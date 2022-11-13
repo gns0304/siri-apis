@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from lib.finance import Investing
+from lib.finance import Yahoo
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -8,9 +8,9 @@ app.config['JSON_AS_ASCII'] = False
 def hello_world():
     return 'Hello World!'
 
-@app.route('/finance/<string:type>/<string:code>')
-def get_finance_data(type, code):
-    return jsonify(Investing.get_finance_data(type, code))
+@app.route('/finance/<string:code>')
+def get_finance_data(code):
+    return jsonify(Yahoo.get_finance_data(code))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
