@@ -8,10 +8,8 @@ app.config['JSON_AS_ASCII'] = False
 def hello_world():
     return 'Hello World!'
 
-@app.route('/finance')
-def get_finance_data():
-    type = request.args.get("type")
-    code = request.args.get("code")
+@app.route('/finance/<string:type>/<string:code>')
+def get_finance_data(type, code):
     return jsonify(Investing.get_finance_data(type, code))
 
 if __name__ == '__main__':
